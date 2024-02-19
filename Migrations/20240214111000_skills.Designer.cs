@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projet_net.Data;
 
@@ -11,9 +12,11 @@ using projet_net.Data;
 namespace projet_net.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240214111000_skills")]
+    partial class skills
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +51,7 @@ namespace projet_net.Migrations
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
-                    b.Property<int>("Defeats")
-                        .HasColumnType("int");
-
                     b.Property<int>("Defense")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
@@ -67,9 +64,6 @@ namespace projet_net.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Strength")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Victories")
                         .HasColumnType("int");
 
                     b.Property<int?>("userId")
@@ -100,26 +94,6 @@ namespace projet_net.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 34,
-                            Name = "hassen"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 34,
-                            Name = "ps"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 45,
-                            Name = "cp"
-                        });
                 });
 
             modelBuilder.Entity("projet_net.Models.User", b =>

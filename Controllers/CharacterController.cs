@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace projet_net.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
@@ -45,6 +50,12 @@ namespace projet_net.Controllers
         public ActionResult<GetDtoCharacter>Delete(int id)
         {
             return Ok(serv.delete(id));
+        }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<GetDtoCharacter>>AddSkill(AddCharacterSkillDto newCharSkill)
+        {
+            return Ok(await serv.AddCharacterSkill(newCharSkill));
         }
     }
 }

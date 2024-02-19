@@ -16,5 +16,11 @@ namespace projet_net.Models
         public int Defense {get;set;}=10;
         public int Intelligence {get;set;}=10;
         public RpgClass Class {get;set;}=RpgClass.Knight;
+        public User? user {get; set;}
+        public Weapon? weapon { get; set; }
+        public List<Skill>? Skills { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }

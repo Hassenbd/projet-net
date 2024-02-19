@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projet_net.Data;
 
@@ -11,9 +12,11 @@ using projet_net.Data;
 namespace projet_net.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240213080507_Weapons")]
+    partial class Weapons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace projet_net.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CharacterSkill", b =>
-                {
-                    b.Property<int>("SkillsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("charactersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SkillsId", "charactersId");
-
-                    b.HasIndex("charactersId");
-
-                    b.ToTable("CharacterSkill");
-                });
 
             modelBuilder.Entity("projet_net.Models.Character", b =>
                 {
@@ -48,13 +36,7 @@ namespace projet_net.Migrations
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
-                    b.Property<int>("Defeats")
-                        .HasColumnType("int");
-
                     b.Property<int>("Defense")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
@@ -69,9 +51,6 @@ namespace projet_net.Migrations
                     b.Property<int>("Strength")
                         .HasColumnType("int");
 
-                    b.Property<int>("Victories")
-                        .HasColumnType("int");
-
                     b.Property<int?>("userId")
                         .HasColumnType("int");
 
@@ -80,46 +59,6 @@ namespace projet_net.Migrations
                     b.HasIndex("userId");
 
                     b.ToTable("Characters");
-                });
-
-            modelBuilder.Entity("projet_net.Models.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 34,
-                            Name = "hassen"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 34,
-                            Name = "ps"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 45,
-                            Name = "cp"
-                        });
                 });
 
             modelBuilder.Entity("projet_net.Models.User", b =>
@@ -171,21 +110,6 @@ namespace projet_net.Migrations
                         .IsUnique();
 
                     b.ToTable("Weapons");
-                });
-
-            modelBuilder.Entity("CharacterSkill", b =>
-                {
-                    b.HasOne("projet_net.Models.Skill", null)
-                        .WithMany()
-                        .HasForeignKey("SkillsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("projet_net.Models.Character", null)
-                        .WithMany()
-                        .HasForeignKey("charactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("projet_net.Models.Character", b =>

@@ -15,5 +15,6 @@ namespace projet_net.Services.CharacterService
         List<GetDtoCharacter> Add(AddDtoCharacter newChar);
         GetDtoCharacter Update(UpdateDtoCharacter updateChar);
        List<GetDtoCharacter> delete(int id);
+       Task<GetDtoCharacter>AddCharacterSkill(AddCharacterSkillDto newcharSkill);
     }
 }
